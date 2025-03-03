@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost/postgres',
+        default=os.environ.get('DATABASE_URL', 'postgresql://postgres:postgres@localhost/postgres'),
         conn_max_age=600
     )
 }
@@ -130,10 +130,14 @@ STATIC_URL = '/static/'
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",  # Asegura que lea tu carpeta "static"
+    ]
 
 MEDIA_ROOT = BASE_DIR / 'media' #Para que las imagene sean accesibles por todas las apps
+MEDIA_URL = '/media/'
 
-MEDIA_URL = '/public/'
+
 
 
 # Default primary key field type
