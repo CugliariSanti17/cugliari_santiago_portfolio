@@ -86,11 +86,8 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 print (DATABASE_URL)
 
-if not DATABASE_URL:
-    raise ValueError("❌ ERROR: No se encontró DATABASE_URL en las variables de entorno.")
-
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
 
 
