@@ -15,5 +15,5 @@ body{
     height: 400px;
     width: 100%;
     object-fit: cover;
-    
+    border: 2px solid #dc3545;
 }
